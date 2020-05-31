@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LauncherActivity">
+
+
+    <ImageView
+        android:id="@+id/line2Animate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toEndOf="@+id/tick2Animate"
+        app:layout_constraintTop_toBottomOf="@+id/line1Animate"
+        app:srcCompat="@drawable/avd_lines" />
+
+    <ImageView
+        android:id="@+id/line3Animate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toEndOf="@+id/tick2Animate"
+        app:layout_constraintTop_toBottomOf="@+id/line2Animate"
+        app:srcCompat="@drawable/avd_lines" />
+
+    <ImageView
+        android:id="@+id/line1Animate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="266dp"
+        app:layout_constraintStart_toEndOf="@+id/tick1Animate"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/avd_lines" />
+
+    <ImageView
+        android:id="@+id/tick1Animate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="260dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/avd_ticks" />
+
+    <ImageView
+        android:id="@+id/tick2Animate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="308dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/avd_ticks" />
+
+    <ImageView
+        android:id="@+id/elipse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/line3Animate"
+        app:layout_constraintTop_toBottomOf="@+id/tick2Animate"
+        app:srcCompat="@drawable/elipse1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
