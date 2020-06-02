@@ -5,6 +5,8 @@ import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_launcher.*
@@ -14,6 +16,7 @@ class LauncherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launcher)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
         val tick1 = tick1Animate.drawable
         val tick2 = tick2Animate.drawable
@@ -45,8 +48,9 @@ class LauncherActivity : AppCompatActivity() {
             }, 500) ;
             Handler().postDelayed({
                 startActivity(Intent (this, MainActivity::class.java))
+                overridePendingTransition(R.anim.fade_in2,R.anim.fade_out)
                 finish()
-            },1500)
+            },1800)
         }
     }
 }
