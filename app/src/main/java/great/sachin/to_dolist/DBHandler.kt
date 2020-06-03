@@ -19,8 +19,9 @@ class DBHandler(val context: Context) : SQLiteOpenHelper(context, DB_NAME,null, 
         //null in remainder
     }
 
-    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+//        db.execSQL("DROP TABLE IF EXISTS $TABLE_TO_DO")
+//        onCreate(db)
     }
     fun addToDoITems(items: ToDoItems):Boolean{
         val db = writableDatabase
@@ -42,6 +43,8 @@ class DBHandler(val context: Context) : SQLiteOpenHelper(context, DB_NAME,null, 
                 val todoObject = ToDoItems()
                 todoObject.id = queryResult.getLong(queryResult.getColumnIndex(COL_ID))
                 todoObject.name = queryResult.getString(queryResult.getColumnIndex(COL_NAME))
+                todoObject.isCompleted = queryResult.getInt(queryResult.getColumnIndex(
+                    COL_IS_COMPLETED))==1
                 result.add(todoObject)
             }while(queryResult.moveToNext())
         }
