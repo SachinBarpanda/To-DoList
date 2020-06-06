@@ -13,4 +13,5 @@
     <string name="set_due_date">Set Due Date</string>
     <string name="due_date">Due Date :</string>
     <string name="not_specified">Not specified</string>
+    <string name="set_task_name">Set Task Name</string>
 </resources>

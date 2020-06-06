@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorAccent"
         android:inputType="textCapWords"
-        android:maxLength="16"/>
+        android:maxLength="16"
+        android:hint="@string/set_task_name"/>
 
 
     <CheckBox
