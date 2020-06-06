@@ -1,5 +1,4 @@
 package great.sachin.to_dolist
-
 class ToDoItems {
     var id : Long = -1
     var name = ""

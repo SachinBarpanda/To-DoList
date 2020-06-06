@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/design_default_color_background">
 
     <EditText
         android:id="@+id/textEditor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-         />
+        android:textColor="@color/colorAccent"/>
+
+
+    <CheckBox
+        android:id="@+id/checkBoxDue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textEditor"
+        android:layout_marginTop="9dp"
+        android:text="@string/set_due_date"
+        android:textColor="@color/colorAccent"
+        android:outlineSpotShadowColor="@color/colorPrimaryDark"/>
 
 
 </RelativeLayout>
