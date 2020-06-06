@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        setTitle(" TO-DO List ")
+        setTitle(" TODO List ")
 
         dbHandler = DBHandler(this)
         recycler_view.layoutManager = LinearLayoutManager(this);
@@ -116,6 +116,8 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             holder.checkBox.isChecked = list[position].isCompleted
             if(holder.checkBox.isChecked){
                 holder.taskName.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            }else{
+                holder.taskName.paintFlags = Paint.ANTI_ALIAS_FLAG
             }
             holder.checkBox.setOnClickListener {
                 if(holder.checkBox.isChecked) {

@@ -8,7 +8,9 @@
         android:id="@+id/textEditor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/colorAccent"
+        android:inputType="textCapWords"
+        android:maxLength="16"/>
 
 
     <CheckBox

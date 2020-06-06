@@ -26,7 +26,8 @@
         android:layout_toLeftOf="@+id/deleteTask"
         android:text="@string/textview"
         android:textSize="28dp"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/colorAccent"
+        android:fontFamily="sans-serif-smallcaps"/>
 
     <TextView
         android:id="@+id/textView"
