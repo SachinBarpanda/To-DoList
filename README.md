@@ -1,3 +1,60 @@
+### Concepts Used 
+1.	Var is used to declare variable in class ToDoItems as it is a mutable list and Val is used in the Launcher Activity items to store items that can be initialised only once.
+
+2.	Inheritance 
+Use of the SQLiteOpenHelper class provides the functionality to use the SQLite database.
+
+```class DBHandler(val context: Context) : SQLiteOpenHelper(context, DB_NAME,null, DB_VERSION)```
+
+3.	 Creating a class to store Items and their properties in the TODO List
+
+4.	lateinit var is used in the MainActivity which is a non-null initializer  that cannot be supplied in the constructor, but the I was sure that the variable will not be null it, thus I avoided the null checks when referencing it later.
+```
+lateinit var dbHandler: DBHandler
+```
+
+5.	use of AlertDialog to get user input from edit text . without changing the screen. This input will be stored in the sqlite datebase and shown in the recyclerView.
+```
+val dialog = AlertDialog.Builder(this)
+```
+5.1.	setPositive and setNegative buttons are used to add or cancel the dialog input 
+```
+dialog.setPositiveButton("Add") 
+dialog.setNegativeButton("Cancel”)
+```
+
+6.	Inheritance and Primary constructor
+Constructor is called in the adapter view of the recycler adapter
+And the super class ```RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder>()```
+is inherited : 
+```class MainRecyclerAdapter(context: Context,val list: MutableList<ToDoItems>) :
+    RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder>()
+ ```
+There the interfaces of the classes are called and overridden to be made useful in the app
+
+```
+override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    TODO("Not yet implemented")
+}
+
+override fun getItemCount(): Int {
+    return list.size
+}
+
+override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    TODO("Not yet implemented")
+}
+```
+
+7.	Bang Bang Operator
+The not-null assertion operator !! converts any value to a non-null type and throws an exception if the value is null.
+```	checkBoxDue!!.isChecked=false
+
+```
+
+
+
+
 # To-DoList
 This is a to do List.
 Concepts used for the project 
@@ -67,3 +124,44 @@ if(tick1 is AnimatedVectorDrawable){
         finish()
     },1500)
 ```
+1.9 To Remove the Action Bar I
+used 
+
+
+```
+android:theme="@style/AppTheme.NoActionBar">
+```
+in the manifest file for the
+launcher activity
+
+1.10 And To make the status bar
+To not show any icon I used
+```
+window.decorView.systemUiVisibility=View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+```
+Moving on to the next activity
+1.     Icons
+I Got my plus icon from 
+```
+Here:- https://icons8.com/icons/set/plus-math
+```
+Got the delete icon from
+```
+Here: - https://www.flaticon.com/free-icon/delete_872192
+```
+
+2.    
+I changed the color of the fab icon by changing
+this:
+```
+app:srcCompat="@drawable/ic_icons8_plus_math_48"
+
+android:backgroundTint="@color/colorPrimaryDark"
+```
+
+
+ 
+
+
+
+ 
