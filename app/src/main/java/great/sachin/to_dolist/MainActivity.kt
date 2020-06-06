@@ -6,11 +6,13 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Paint
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -64,9 +66,7 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                         checkBoxDue!!.isChecked=false
                     }
                     datePickerDialog.show()
-
                 }
-
             }
             dialog.setPositiveButton("Add") { _: DialogInterface, _: Int ->
 
@@ -81,12 +81,9 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                     dbHandler.addToDoItems(toDoItems)
                     reloadList()
                 }
-
             }
             dialog.setNegativeButton("Cancel"){ _: DialogInterface, _: Int ->
-
             }
-
             dialog.show()
         }
     }
@@ -114,22 +111,39 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
             holder.taskName.text = list[position].name
             holder.checkBox.isChecked = list[position].isCompleted
+            if(holder.checkBox.isChecked){
+                holder.taskName.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            }
             holder.checkBox.setOnClickListener {
                 if(holder.checkBox.isChecked) {
                     dbHandler.updateCheckStatus(list[position].id, true)
                     Toast.makeText(activity, "Task Completed", Toast.LENGTH_SHORT).show()
+                    holder.taskName.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 }else{
                     dbHandler.updateCheckStatus(list[position].id, false)
                     Toast.makeText(activity,"Incomplete",Toast.LENGTH_SHORT).show()
+                    holder.taskName.paintFlags = Paint.ANTI_ALIAS_FLAG
                 }
             }
             holder.dateAndTime.text = list[position].remainder
             holder.delete.setOnClickListener{
-                Toast.makeText(activity,"${holder.taskName.text} is deleted", Toast.LENGTH_SHORT).show()
-                dbHandler.deleteToDo(list[position].id)
-                activity.reloadList()
+                val dialog1 =  AlertDialog.Builder(activity)
+                dialog1.setTitle("Are you sure")
+                dialog1.setMessage("You want to delete ${holder.taskName.text}")
+                dialog1.setPositiveButton("Delete") { _: DialogInterface, _: Int ->
+                    Toast.makeText(activity,"${holder.taskName.text} is deleted", Toast.LENGTH_SHORT).show()
+                    dbHandler.deleteToDo(list[position].id)
+                    activity.reloadList()
+                }
+                dialog1.setNegativeButton("Not now"){ _: DialogInterface, _: Int ->
+
+                }
+                dialog1.show()
+
+
             }
         }
         class ViewHolder(v: View) : RecyclerView.ViewHolder(v){
@@ -151,7 +165,7 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         myYear = year
         myMonth = month
         val calendar: Calendar = Calendar.getInstance()
-        hour = calendar.get(Calendar.HOUR)
+        hour = calendar.get(Calendar.HOUR_OF_DAY)
         minute = calendar.get(Calendar.MINUTE)
         val timePickerDialog = TimePickerDialog(this@MainActivity, this@MainActivity, hour, minute,
             DateFormat.is24HourFormat(this))
@@ -171,6 +185,6 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
 
     }
     fun timeParse():String {
-        return "Year: $myYear Month: $myMonth Day: $myDay Hour $hour Minute $minute"
+        return " $myDay : $myMonth : $myYear  At $hour : $minute"
     }
 }
